@@ -98,18 +98,14 @@ func (tdsChan *Channel) Login(ctx context.Context, config *LoginConfig) error {
 			return fmt.Errorf("login failed: %s", loginack.Status)
 		}
 
-		pkg, err = tdsChan.NextPackage(ctx, true)
+		err = checkCapabilities(ctx, tdsChan)
 		if err != nil {
-			return fmt.Errorf("error reading Done package: %w", err)
+			return err
 		}
 
-		done, ok := pkg.(*DonePackage)
-		if !ok {
-			return fmt.Errorf("expected Done as second response, received: %v", pkg)
-		}
-
-		if done.Status&TDS_DONE_FINAL != TDS_DONE_FINAL {
-			return fmt.Errorf("expected DONE(FINAL), received: %s", done)
+		err = checkDoneFinal(ctx, tdsChan)
+		if err != nil {
+			return err
 		}
 
 		return nil
@@ -334,7 +330,23 @@ func (tdsChan *Channel) Login(ctx context.Context, config *LoginConfig) error {
 		return fmt.Errorf("error reading LoginAck package: %w", err)
 	}
 
-	pkg, err = tdsChan.NextPackage(ctx, true)
+	err = checkCapabilities(ctx, tdsChan)
+	if err != nil {
+		return err
+	}
+
+	err = checkDoneFinal(ctx, tdsChan)
+	if err != nil {
+		return err
+	}
+
+	tdsChan.Reset()
+
+	return nil
+}
+
+func checkCapabilities(ctx context.Context, tdsChan *Channel) error {
+	pkg, err := tdsChan.NextPackage(ctx, true)
 	if err != nil {
 		return fmt.Errorf("error reading Capability package: %w", err)
 	}
@@ -367,7 +379,11 @@ func (tdsChan *Channel) Login(ctx context.Context, config *LoginConfig) error {
 	// Override requested capabilities with server response
 	tdsChan.tdsConn.Caps = capsResponse
 
-	pkg, err = tdsChan.NextPackage(ctx, true)
+	return nil
+}
+
+func checkDoneFinal(ctx context.Context, tdsChan *Channel) error {
+	pkg, err := tdsChan.NextPackage(ctx, true)
 	if err != nil {
 		return fmt.Errorf("error reading Done package: %w", err)
 	}
@@ -381,8 +397,6 @@ func (tdsChan *Channel) Login(ctx context.Context, config *LoginConfig) error {
 		return fmt.Errorf("expected done package with status TDS_DONE_FINAL, received %s",
 			done.Status)
 	}
-
-	tdsChan.Reset()
 
 	return nil
 }
