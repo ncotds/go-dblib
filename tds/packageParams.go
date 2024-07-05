@@ -48,6 +48,8 @@ func (pkg *ParamsPackage) LastPkg(other Package) error {
 		pkg.rowFmt = otherPkg.rowFmt
 	case *OrderBy2Package:
 		pkg.rowFmt = otherPkg.rowFmt
+	case *ControlPackage:
+		pkg.rowFmt = otherPkg.rowFmt
 	default:
 		return fmt.Errorf("TDS_PARAMS or TDS_ROW received without preceding TDS_PARAMFMT/2 or TDS_ROWFMT")
 	}
