@@ -95,6 +95,8 @@ func LookupPackage(token Token) (Package, error) {
 		return &CurUpdatePackage{}, nil
 	case TDS_CURDELETE:
 		return &CurDeletePackage{}, nil
+	case TDS_CONTROL:
+		return &ControlPackage{}, nil
 	default:
 		return NewTokenlessPackage(), nil
 	}
