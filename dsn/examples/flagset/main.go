@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/SAP/go-dblib/dsn"
+	"github.com/ncotds/go-dblib/dsn"
 )
 
 type MyDSN struct {

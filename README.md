@@ -9,11 +9,11 @@ SPDX-License-Identifier: Apache-2.0
 
 # go-dblib
 
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/SAP/go-dblib)](https://pkg.go.dev/github.com/SAP/go-dblib)
-[![Go Report Card](https://goreportcard.com/badge/github.com/SAP/go-dblib)](https://goreportcard.com/report/github.com/SAP/go-dblib)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/ncotds/go-dblib)](https://pkg.go.dev/github.com/ncotds/go-dblib)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ncotds/go-dblib)](https://goreportcard.com/report/github.com/ncotds/go-dblib)
 [![REUSE
-status](https://api.reuse.software/badge/github.com/SAP/go-dblib)](https://api.reuse.software/info/github.com/SAP/go-dblib)
-![Actions: CI](https://github.com/SAP/go-dblib/workflows/CI/badge.svg)
+status](https://api.reuse.software/badge/github.com/ncotds/go-dblib)](https://api.reuse.software/info/github.com/ncotds/go-dblib)
+![Actions: CI](https://github.com/ncotds/go-dblib/workflows/CI/badge.svg)
 
 ## Description
 
@@ -37,7 +37,7 @@ these implementations is required.
 The packages in this repo can be `go get` and imported as usual.
 
 ```sh
-go get github.com/SAP/go-dblib/<package>
+go get github.com/ncotds/go-dblib/<package>
 ```
 
 ## Usage (Example)
@@ -52,7 +52,7 @@ package main
 import (
     "database/sql"
 
-    "github.com/SAP/go-dblib/dsn"
+    "github.com/ncotds/go-dblib/dsn"
     "github.com/SAP/go-ase"
 )
 
@@ -108,7 +108,7 @@ This file is licensed under the Apache License 2.0 except as noted otherwise in 
 
 [cgo]: https://github.com/SAP/cgo-ase
 [go]: https://golang.org/
-[issues]: https://github.com/SAP/go-dblib/issues
+[issues]: https://github.com/ncotds/go-dblib/issues
 [pkg-database-sql]: https://golang.org/pkg/database/sql
 [purego]: https://github.com/SAP/go-ase
 [sap-ase]: https://www.sap.com/products/sybase-ase.html

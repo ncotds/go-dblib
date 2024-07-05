@@ -10,7 +10,7 @@ package tds
 import (
 	"fmt"
 
-	"github.com/SAP/go-dblib/asetypes"
+	"github.com/ncotds/go-dblib/asetypes"
 )
 
 // KeyPackage is used to communicate the row position of a cursor.

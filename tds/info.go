@@ -10,10 +10,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/SAP/go-dblib/dsn"
+	"github.com/ncotds/go-dblib/dsn"
 )
 
-// Info is a github.com/SAP/go-dblib/dsn compatible struct with required
+// Info is a github.com/ncotds/go-dblib/dsn compatible struct with required
 // information for the TDS driver.
 type Info struct {
 	dsn.Info

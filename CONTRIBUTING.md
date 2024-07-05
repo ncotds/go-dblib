@@ -97,4 +97,4 @@ Contributions must fulfill following requirements to be accepted:
 
 [dco]: https://developercertificate.org/
 [effective-go]: https://golang.org/doc/effective_go.html
-[issues]: https://github.com/SAP/go-dblib/issues
+[issues]: https://github.com/ncotds/go-dblib/issues

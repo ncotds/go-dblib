@@ -14,7 +14,7 @@ import (
 	"time"
 	"unicode/utf16"
 
-	"github.com/SAP/go-dblib/asetime"
+	"github.com/ncotds/go-dblib/asetime"
 )
 
 // Bytes returns a byte slice based on a given value-interface and depending

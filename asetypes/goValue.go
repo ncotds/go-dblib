@@ -15,7 +15,7 @@ import (
 	"time"
 	"unicode/utf16"
 
-	"github.com/SAP/go-dblib/asetime"
+	"github.com/ncotds/go-dblib/asetime"
 )
 
 // GoValue returns a value-interface based on a given byte slice and

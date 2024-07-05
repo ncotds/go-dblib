@@ -5,7 +5,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-module github.com/SAP/go-dblib
+module github.com/ncotds/go-dblib
 
 go 1.19
 

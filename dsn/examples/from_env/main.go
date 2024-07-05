@@ -11,7 +11,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/SAP/go-dblib/dsn"
+	"github.com/ncotds/go-dblib/dsn"
 )
 
 type Info struct {

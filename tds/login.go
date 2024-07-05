@@ -12,7 +12,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/SAP/go-dblib/asetypes"
+	"github.com/ncotds/go-dblib/asetypes"
 )
 
 type loginEncryptError struct {

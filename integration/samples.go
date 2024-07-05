@@ -15,7 +15,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SAP/go-dblib/asetypes"
+	"github.com/ncotds/go-dblib/asetypes"
 )
 
 //go:generate go run ./gen_type.go BigInt int64
@@ -52,7 +52,7 @@ var samplesNullInt = []sql.NullInt32{
 	{Int32: math.MaxInt32, Valid: true},
 }
 
-//go:generate go run ./gen_type.go NullSmallInt github.com/SAP/go-dblib/asetypes.NullInt16 -columndef "smallint null"
+//go:generate go run ./gen_type.go NullSmallInt github.com/ncotds/go-dblib/asetypes.NullInt16 -columndef "smallint null"
 var samplesNullSmallInt = []asetypes.NullInt16{
 	{Int16: math.MinInt16, Valid: true},
 	{Int16: 0, Valid: true},
@@ -60,7 +60,7 @@ var samplesNullSmallInt = []asetypes.NullInt16{
 	{Int16: math.MaxInt16, Valid: true},
 }
 
-//go:generate go run ./gen_type.go NullTinyInt github.com/SAP/go-dblib/asetypes.NullUint8 -columndef "tinyint null"
+//go:generate go run ./gen_type.go NullTinyInt github.com/ncotds/go-dblib/asetypes.NullUint8 -columndef "tinyint null"
 var samplesNullTinyInt = []asetypes.NullUint8{
 	{Uint8: 0, Valid: true},
 	{Valid: false},
@@ -76,21 +76,21 @@ var samplesUnsignedInt = []uint32{0, 1000, 5000, 150000, 123456789, math.MaxUint
 //go:generate go run ./gen_type.go UnsignedSmallInt uint16 -columndef "unsigned smallint"
 var samplesUnsignedSmallInt = []uint16{0, 65535}
 
-//go:generate go run ./gen_type.go NullUnsignedBigInt github.com/SAP/go-dblib/asetypes.NullUint64 -columndef "unsigned bigint null"
+//go:generate go run ./gen_type.go NullUnsignedBigInt github.com/ncotds/go-dblib/asetypes.NullUint64 -columndef "unsigned bigint null"
 var samplesNullUnsignedBigInt = []asetypes.NullUint64{
 	{Uint64: 0, Valid: true},
 	{Valid: false},
 	{Uint64: math.MaxUint64, Valid: true},
 }
 
-//go:generate go run ./gen_type.go NullUnsignedInt github.com/SAP/go-dblib/asetypes.NullUint32 -columndef "unsigned int null"
+//go:generate go run ./gen_type.go NullUnsignedInt github.com/ncotds/go-dblib/asetypes.NullUint32 -columndef "unsigned int null"
 var samplesNullUnsignedInt = []asetypes.NullUint32{
 	{Uint32: 0, Valid: true},
 	{Valid: false},
 	{Uint32: math.MaxUint32, Valid: true},
 }
 
-//go:generate go run ./gen_type.go NullUnsignedSmallInt github.com/SAP/go-dblib/asetypes.NullUint16 -columndef "unsigned smallint null"
+//go:generate go run ./gen_type.go NullUnsignedSmallInt github.com/ncotds/go-dblib/asetypes.NullUint16 -columndef "unsigned smallint null"
 var samplesNullUnsignedSmallInt = []asetypes.NullUint16{
 	{Uint16: 0, Valid: true},
 	{Valid: false},
@@ -101,28 +101,28 @@ func convertDecimal10(sample string) (*asetypes.Decimal, error) {
 	return asetypes.NewDecimalString(1, 0, sample)
 }
 
-//go:generate go run ./gen_type.go Decimal10 github.com/SAP/go-dblib/*asetypes.Decimal -columndef decimal(1,0) -convert convertDecimal10 -compare compareDecimal
+//go:generate go run ./gen_type.go Decimal10 github.com/ncotds/go-dblib/*asetypes.Decimal -columndef decimal(1,0) -convert convertDecimal10 -compare compareDecimal
 var samplesDecimal10 = []string{"0", "1", "9"}
 
 func convertDecimal380(sample string) (*asetypes.Decimal, error) {
 	return asetypes.NewDecimalString(38, 0, sample)
 }
 
-//go:generate go run ./gen_type.go Decimal380 github.com/SAP/go-dblib/*asetypes.Decimal -columndef decimal(38,0) -convert convertDecimal380 -compare compareDecimal
+//go:generate go run ./gen_type.go Decimal380 github.com/ncotds/go-dblib/*asetypes.Decimal -columndef decimal(38,0) -convert convertDecimal380 -compare compareDecimal
 var samplesDecimal380 = []string{"99999999999999999999999999999999999999"}
 
 func convertDecimal3838(sample string) (*asetypes.Decimal, error) {
 	return asetypes.NewDecimalString(38, 38, sample)
 }
 
-//go:generate go run ./gen_type.go Decimal3838 github.com/SAP/go-dblib/*asetypes.Decimal -columndef decimal(38,38) -convert convertDecimal3838 -compare compareDecimal
+//go:generate go run ./gen_type.go Decimal3838 github.com/ncotds/go-dblib/*asetypes.Decimal -columndef decimal(38,38) -convert convertDecimal3838 -compare compareDecimal
 var samplesDecimal3838 = []string{".99999999999999999999999999999999999999"}
 
 func convertDecimal3819(sample string) (*asetypes.Decimal, error) {
 	return asetypes.NewDecimalString(38, 19, sample)
 }
 
-//go:generate go run ./gen_type.go Decimal github.com/SAP/go-dblib/*asetypes.Decimal -columndef "decimal(38,19)" -convert convertDecimal3819 -compare compareDecimal
+//go:generate go run ./gen_type.go Decimal github.com/ncotds/go-dblib/*asetypes.Decimal -columndef "decimal(38,19)" -convert convertDecimal3819 -compare compareDecimal
 var samplesDecimal = []string{
 	// ASE max
 	"1234567890123456789",
@@ -176,7 +176,7 @@ func compareNullDecimal(recv, expect asetypes.NullDecimal) bool {
 	return !expect.Dec.Cmp(*recv.Dec)
 }
 
-//go:generate go run ./gen_type.go NullDecimal github.com/SAP/go-dblib/asetypes.NullDecimal -columndef "decimal(38,19) null" -convert convertNullDecimal -compare compareNullDecimal
+//go:generate go run ./gen_type.go NullDecimal github.com/ncotds/go-dblib/asetypes.NullDecimal -columndef "decimal(38,19) null" -convert convertNullDecimal -compare compareNullDecimal
 var samplesNullDecimal = []sql.NullString{
 	{String: "-9999999999999999999", Valid: true},
 	{String: "-.9999999999999999999", Valid: true},
@@ -219,7 +219,7 @@ var samplesNullFloat = []sql.NullFloat64{
 	{Float64: math.MaxFloat64, Valid: true},
 }
 
-//go:generate go run ./gen_type.go NullReal github.com/SAP/go-dblib/asetypes.NullFloat32 -columndef "real null"
+//go:generate go run ./gen_type.go NullReal github.com/ncotds/go-dblib/asetypes.NullFloat32 -columndef "real null"
 var samplesNullReal = []asetypes.NullFloat32{
 	{Float32: -math.SmallestNonzeroFloat32, Valid: true},
 	{Float32: math.SmallestNonzeroFloat32, Valid: true},
@@ -235,7 +235,7 @@ func convertMoney(sample string) (*asetypes.Decimal, error) {
 	return asetypes.NewDecimalString(asetypes.ASEMoneyPrecision, asetypes.ASEMoneyScale, sample)
 }
 
-//go:generate go run ./gen_type.go Money github.com/SAP/go-dblib/*asetypes.Decimal -convert convertMoney -compare compareDecimal
+//go:generate go run ./gen_type.go Money github.com/ncotds/go-dblib/*asetypes.Decimal -convert convertMoney -compare compareDecimal
 var samplesMoney = []string{
 	// ASE min
 	"-922337203685477.5808",
@@ -251,7 +251,7 @@ func convertSmallMoney(sample string) (*asetypes.Decimal, error) {
 	return asetypes.NewDecimalString(asetypes.ASEShortMoneyPrecision, asetypes.ASEShortMoneyScale, sample)
 }
 
-//go:generate go run ./gen_type.go Money4 github.com/SAP/go-dblib/*asetypes.Decimal -columndef smallmoney -convert convertSmallMoney -compare compareDecimal
+//go:generate go run ./gen_type.go Money4 github.com/ncotds/go-dblib/*asetypes.Decimal -columndef smallmoney -convert convertSmallMoney -compare compareDecimal
 var samplesMoney4 = []string{
 	// ASE min
 	"-214748.3648",
@@ -281,7 +281,7 @@ func convertNullMoney(sample sql.NullString) (asetypes.NullDecimal, error) {
 	return nd, nil
 }
 
-//go:generate go run ./gen_type.go NullMoney github.com/SAP/go-dblib/asetypes.NullDecimal -columndef "money null" -convert convertNullMoney -compare compareNullDecimal
+//go:generate go run ./gen_type.go NullMoney github.com/ncotds/go-dblib/asetypes.NullDecimal -columndef "money null" -convert convertNullMoney -compare compareNullDecimal
 var samplesNullMoney = []sql.NullString{
 	// ASE min
 	{String: "-922337203685477.5808", Valid: true},
@@ -313,7 +313,7 @@ func convertNullMoney4(sample sql.NullString) (asetypes.NullDecimal, error) {
 	return nd, nil
 }
 
-//go:generate go run ./gen_type.go NullMoney4 github.com/SAP/go-dblib/asetypes.NullDecimal -columndef "smallmoney null" -convert convertNullMoney4 -compare compareNullDecimal
+//go:generate go run ./gen_type.go NullMoney4 github.com/ncotds/go-dblib/asetypes.NullDecimal -columndef "smallmoney null" -convert convertNullMoney4 -compare compareNullDecimal
 var samplesNullMoney4 = []sql.NullString{
 	// ASE min
 	{String: "-214748.3648", Valid: true},
@@ -517,7 +517,7 @@ func compareBinary(recv, expect []byte) bool {
 	return !bytes.Equal(bytes.Trim(recv, "\x00"), expect)
 }
 
-//go:generate go run ./gen_type.go NullBinary github.com/SAP/go-dblib/asetypes.NullBinary -columndef "binary(13) null" -compare compareNullBinary
+//go:generate go run ./gen_type.go NullBinary github.com/ncotds/go-dblib/asetypes.NullBinary -columndef "binary(13) null" -compare compareNullBinary
 var samplesNullBinary = []asetypes.NullBinary{
 	{ByteSlice: []byte(""), Valid: false},
 	{ByteSlice: []byte(" "), Valid: true},
@@ -541,27 +541,32 @@ func compareVarBinary(recv, expect []byte) bool {
 	return !bytes.Equal(recv, expect)
 }
 
-//go:generate go run ./gen_type.go NullVarBinary github.com/SAP/go-dblib/asetypes.NullBinary -columndef "varbinary(13) null" -compare compareNullBinary
+//go:generate go run ./gen_type.go NullVarBinary github.com/ncotds/go-dblib/asetypes.NullBinary -columndef "varbinary(13) null" -compare compareNullBinary
 var samplesNullVarBinary = samplesNullBinary
 
-//go:generate go run ./gen_type.go Bit bool
 // Cannot be nulled
+//
+//go:generate go run ./gen_type.go Bit bool
 var samplesBit = []bool{true, false}
 
+// TODO: -null github.com/ncotds/go-dblib/asetypes.NullBinary
+//
 //go:generate go run ./gen_type.go Image []byte -compare compareBinary
-// TODO: -null github.com/SAP/go-dblib/asetypes.NullBinary
 var samplesImage = [][]byte{[]byte("test"), []byte("a longer test")}
 
 // TODO: Separate null test, ctlib transforms empty value to null
-//go:generate go run ./gen_type.go UniChar string -columndef "unichar(30) null" -compare compareChar
 // TODO: -null database/sql.NullString
+//
+//go:generate go run ./gen_type.go UniChar string -columndef "unichar(30) null" -compare compareChar
 var samplesUniChar = []string{"", "not a unicode example"}
 
 // TODO: Separate null test, ctlib transforms empty value to null
-//go:generate go run ./gen_type.go Text string -columndef "text null" -compare compareChar
 // TODO: -null database/sql.NullString
+//
+//go:generate go run ./gen_type.go Text string -columndef "text null" -compare compareChar
 var samplesText = []string{"", "a long text"}
 
-//go:generate go run ./gen_type.go UniText string -columndef unitext -compare compareChar
 // TODO: -null database/sql.NullString
+//
+//go:generate go run ./gen_type.go UniText string -columndef unitext -compare compareChar
 var samplesUniText = []string{"not a unicode example", "another not unicode example"}
